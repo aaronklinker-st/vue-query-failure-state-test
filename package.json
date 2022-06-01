@@ -1,0 +1,31 @@
+{
+  "name": "vue-query-failure-state-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.10",
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/vue": "^6.4.2",
+    "@types/jest": "^27.5.0",
+    "@types/testing-library__jest-dom": "^5.14.3",
+    "@vue/compiler-sfc": "^3.2.20",
+    "@vue/vue3-jest": "^28.0.0",
+    "babel-jest": "^28.0.3",
+    "jest": "^28.0.3",
+    "jest-environment-jsdom": "^28.0.2",
+    "jest-mock-extended": "^2.0.5",
+    "ts-jest": "^28.0.1",
+    "typescript": "^4.5.4",
+    "vue": "^3.2.25",
+    "vue-query": "^1.25.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
