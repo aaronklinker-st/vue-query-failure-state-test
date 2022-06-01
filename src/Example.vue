@@ -1,6 +1,6 @@
 <template>
   <p v-if="isLoading">Loading...</p>
-  <p v-if="isError">{{ errorMessage }}</p>
+  <p v-else-if="isError">{{ errorMessage }}</p>
   <template v-else>
     <ul>
       <li v-for="color of colors" :key="color">{{ color }}</li>
