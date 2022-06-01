@@ -11,9 +11,11 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { useQuery } from "vue-query";
+import { useQuery, useQueryClient } from "vue-query";
 import { Api } from "./api";
 
+const client = useQueryClient();
+console.log(client);
 const { data: colors, isLoading, isError, error } = useQuery("example", Api.getColors);
 const errorMessage = computed(() => (error.value as Error | undefined)?.message);
 const noResults = computed(() => colors.value?.length === 0);

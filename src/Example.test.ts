@@ -1,6 +1,6 @@
 import "vue";
 import { render } from "@testing-library/vue";
-import { VueQueryPlugin } from "vue-query";
+import { QueryClient, VueQueryPlugin, VueQueryPluginOptions } from "vue-query";
 import { Api } from "./api";
 import Example from "./Example.vue";
 
@@ -8,9 +8,19 @@ jest.mock("./api");
 const mockApi = jest.mocked(Api);
 
 function renderExample() {
+  const vueQueryPluginOptions: VueQueryPluginOptions = {
+    queryClient: new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    }),
+  };
+
   return render(Example, {
     global: {
-      plugins: [VueQueryPlugin],
+      plugins: [[VueQueryPlugin, vueQueryPluginOptions]],
     },
   });
 }
@@ -46,13 +56,20 @@ describe("Example Component", () => {
   });
 
   it("should show a loading indicator while the data is loading", async () => {
-    mockApi.getColors.mockResolvedValue([]);
+    mockApi.getColors.mockImplementation(
+      () =>
+        new Promise((res) => {
+          setTimeout(() => res([]), 100);
+        })
+    );
 
     const { findByText, debug } = renderExample();
 
     expect(await findByText("Loading...")).toBeInTheDocument();
-
     debug();
+
+    // Wait for test to finish
+    await findByText("No results");
   });
 
   it("should show the error message when the API throws an error", async () => {
