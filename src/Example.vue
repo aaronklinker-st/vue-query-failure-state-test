@@ -4,8 +4,8 @@
   <template v-else>
     <ul>
       <li v-for="color of colors" :key="color">{{ color }}</li>
+      <li v-if="noResults">No results</li>
     </ul>
-    <p v-if="noResults">No results</p>
   </template>
 </template>
 
